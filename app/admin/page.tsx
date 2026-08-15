@@ -169,10 +169,10 @@ export default function Admin() {
           </div>
 
           <h1 style={{ fontSize: '1.5rem', fontWeight: 800, color: '#ffffff' }}>
-            RGIPT TPO Admin Portal
+            Admin Portal
           </h1>
           <p style={{ fontSize: '0.85rem', color: '#94a3b8', marginTop: '6px', marginBottom: '24px' }}>
-            This page is restricted to Placement Officers & TPO Team. Please enter the Admin Passcode to unlock.
+            Please enter the Admin Passcode to unlock.
           </p>
 
           <form onSubmit={handleLogin} style={{ display: 'flex', flexDirection: 'column', gap: '14px' }}>
