@@ -12,7 +12,7 @@ export default function Page() {
     offers.reduce<Record<string, number>>((a, o) => ((a[o.sector] = (a[o.sector] || 0) + 1), a), {})
   ).map(([name, value]) => ({ name, value }));
 
-  const branchData = ['CSE', 'MnC', 'ECE', 'EE', 'ME', 'CHE', 'PE', 'CE', 'BME'].map(b => ({
+  const branchData = ['CSE', 'CSD', 'IT', 'IDD', 'MnC', 'ECE', 'EV', 'PE', 'CHE'].map(b => ({
     name: b,
     value: offers.filter(o => o.branches.includes(b)).length
   }));

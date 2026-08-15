@@ -1,7 +1,15 @@
 import { Offer, Branch } from './types';
 export const branches:Branch[]=[
- {code:'MnC',name:'Mathematics & Computing'}, {code:'CSE',name:'Computer Science & Engineering'}, {code:'ECE',name:'Electronics & Communication Engineering'}, {code:'EE',name:'Electrical Engineering'}, {code:'ME',name:'Mechanical Engineering'}, {code:'CHE',name:'Chemical Engineering'}, {code:'PE',name:'Petroleum Engineering'}, {code:'CE',name:'Civil Engineering'}, {code:'BME',name:'Bio-Medical Engineering'}
-];
+ {code:'CSE',name:'Computer Science & Engineering'},
+ {code:'CSD',name:'Computer Science & Design'},
+ {code:'IT',name:'Information Technology'},
+ {code:'IDD',name:'Integrated Dual Degree'},
+ {code:'MnC',name:'Mathematics & Computing'},
+ {code:'ECE',name:'Electronics & Communication Engineering'},
+ {code:'EV',name:'Electrical Vehicle'},
+ {code:'PE',name:'Petroleum Engineering'},
+ {code:'CHE',name:'Chemical Engineering'}
+]
 export const demoOffers:Offer[]=[
  {id:'1',session:'2026-27',notificationDate:'2026-08-11',company:'Deloitte',sector:'Consulting',offerType:'FTE',branches:['CSE','MnC','ECE','EE'],minCgpa:7.5,role:'Analyst / SDE',ctc:1200000,stipend:null,location:'Pan India',studentsSelected:5,notes:'Indicative demo data — replace with verified placement records.'},
  {id:'2',session:'2026-27',notificationDate:'2026-08-10',company:'ZS Associates',sector:'Analytics & Consulting',offerType:'PPO',branches:['CSE','MnC','ECE'],minCgpa:7,role:'Decision Analytics Associate',ctc:1456000,stipend:52000,location:'Bengaluru / Pune',studentsSelected:3},

@@ -48,7 +48,7 @@ export default function PlacementTable({ offers }: { offers: Offer[] }) {
           onChange={e => setBranch(e.target.value)}
           className="bg-[#0b192d] border border-line rounded-xl px-4 py-3"
         >
-          {['All', 'CSE', 'MnC', 'ECE', 'EE', 'ME', 'CHE', 'PE', 'CE', 'BME'].map(x => (
+          {['All', 'CSE', 'CSD', 'IT', 'IDD', 'MnC', 'ECE', 'EV', 'PE', 'CHE'].map(x => (
             <option key={x}>{x}</option>
           ))}
         </select>
