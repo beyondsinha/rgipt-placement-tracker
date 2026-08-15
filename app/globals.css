@@ -1,0 +1,8 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{--bg:#071426;--panel:#101f35;--panel2:#162844;--border:#2a3b55;--muted:#8fa4c1;--text:#f5f8ff;--blue:#3578ff;--purple:#6454e8;--green:#16c784;}
+*{box-sizing:border-box}html{background:var(--bg)}body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,sans-serif}h1,h2,h3{font-family:'Plus Jakarta Sans',Inter,sans-serif}.container{max-width:1500px;margin:auto;padding:0 22px}.glass{background:rgba(16,31,53,.94);border:1px solid var(--border);box-shadow:0 12px 35px rgba(0,0,0,.14)}.muted{color:var(--muted)}.gradient{background:linear-gradient(115deg,#6157e9 0%,#277ff1 50%,#11bd80 100%)}
+::-webkit-scrollbar{width:9px;height:9px}::-webkit-scrollbar-thumb{background:#344967;border-radius:9px}::-webkit-scrollbar-track{background:#09162a}
