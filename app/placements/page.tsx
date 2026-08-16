@@ -2,6 +2,7 @@
 
 import PlacementTable from '@/components/PlacementTable';
 import { useOffers } from '@/components/OffersProvider';
+import Disclaimer from '@/components/Disclaimer';
 
 export default function Page() {
   const { offers, isLoading } = useOffers();
@@ -18,12 +19,15 @@ export default function Page() {
         <div className="rounded-xl border border-white/10 bg-slate-900/50 p-10 text-center">
           <p className="text-lg font-semibold">Loading placement data...</p>
           <p className="muted mt-2 text-sm">
-          Fetching the latest records 
+            Fetching the latest records from Google Sheets.
           </p>
         </div>
       ) : (
-        <PlacementTable offers={offers} />
-      )}
+        <>
+          <PlacementTable offers={offers} />
+          <Disclaimer />
+        </>
+      )} 
     </main>
   );
 }
