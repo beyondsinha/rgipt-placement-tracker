@@ -1,7 +1,7 @@
 import './globals.css';
 import Link from 'next/link';
 import { OffersProvider } from '@/components/OffersProvider';
-
+import { Analytics } from '@vercel/analytics/next';
 export const metadata = {
   title: 'RGIPT Placement Tracker',
   description: 'Official Rajiv Gandhi Institute of Petroleum Technology placement dashboard, analytics, and eligibility finder.'
@@ -38,6 +38,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           </header>
 
           {children}
+          <Analytics />
 
           <footer className="container py-10 text-xs muted text-center">
             <div>
