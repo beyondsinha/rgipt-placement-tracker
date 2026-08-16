@@ -43,9 +43,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <div>
             © 2026 Arpit Sinha. All rights reserved.
             </div>
-            <div className="mt-2">
-              RGIPT Placement Tracker · Built for maintainable placement reporting · Automatically syncs with Google Sheets.
-            </div>
           </footer>
         </OffersProvider>
       </body>

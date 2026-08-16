@@ -4,7 +4,7 @@ import PlacementTable from '@/components/PlacementTable';
 import { useOffers } from '@/components/OffersProvider';
 
 export default function Page() {
-  const { offers, lastUpdated } = useOffers();
+  const { offers, isLoading } = useOffers();
 
   return (
     <main className="container py-10">
@@ -13,11 +13,17 @@ export default function Page() {
           <h1 className="text-3xl md:text-4xl font-extrabold">Placement Data</h1>
           <p className="muted mt-2">Search and filter live placement records.</p>
         </div>
-        <div className="text-xs px-3 py-1.5 rounded-full bg-blue-500/10 border border-blue-500/30 text-blue-400 font-semibold">
-          {lastUpdated}
-        </div>
       </div>
-      <PlacementTable offers={offers} />
+      {isLoading ? (
+        <div className="rounded-xl border border-white/10 bg-slate-900/50 p-10 text-center">
+          <p className="text-lg font-semibold">Loading placement data...</p>
+          <p className="muted mt-2 text-sm">
+          Fetching the latest records 
+          </p>
+        </div>
+      ) : (
+        <PlacementTable offers={offers} />
+      )}
     </main>
   );
 }

@@ -26,9 +26,9 @@ const LOCAL_STORAGE_LAST_UPDATED_KEY = 'rgipt_last_updated_v2';
 const ENV_SHEET_URL = process.env.NEXT_PUBLIC_GOOGLE_SHEET_URL || '';
 
 export function OffersProvider({ children }: { children: React.ReactNode }) {
-  const [offers, setOffers] = useState<Offer[]>(demoOffers);
+  const [offers, setOffers] = useState<Offer[]>([]);
   const [googleSheetUrl, setGoogleSheetUrlState] = useState<string>(ENV_SHEET_URL);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   const [lastUpdated, setLastUpdated] = useState<string>('Default Dataset');
 
   // Helper to parse CSV data into Offer objects
@@ -113,22 +113,31 @@ export function OffersProvider({ children }: { children: React.ReactNode }) {
 
   // Initial load
   useEffect(() => {
-    try {
-      const savedSheetUrl = localStorage.getItem(LOCAL_STORAGE_SHEET_URL_KEY) || ENV_SHEET_URL;
-      if (savedSheetUrl) {
-        setGoogleSheetUrlState(savedSheetUrl);
-        syncFromGoogleSheet(savedSheetUrl);
-      } else {
-        const savedOffers = localStorage.getItem(LOCAL_STORAGE_OFFERS_KEY);
-        const savedLastUpdated = localStorage.getItem(LOCAL_STORAGE_LAST_UPDATED_KEY);
-        if (savedOffers) {
-          setOffers(JSON.parse(savedOffers));
-          setLastUpdated(savedLastUpdated || 'Custom Local Dataset');
+    const loadInitialData = async () => {
+      try {
+        const savedSheetUrl =
+          localStorage.getItem(LOCAL_STORAGE_SHEET_URL_KEY) || ENV_SHEET_URL;
+
+        if (savedSheetUrl) {
+          setGoogleSheetUrlState(savedSheetUrl);
+          await syncFromGoogleSheet(savedSheetUrl);
+        } else {
+          const savedOffers = localStorage.getItem(LOCAL_STORAGE_OFFERS_KEY);
+          const savedLastUpdated = localStorage.getItem(LOCAL_STORAGE_LAST_UPDATED_KEY);
+
+          if (savedOffers) {
+            setOffers(JSON.parse(savedOffers));
+            setLastUpdated(savedLastUpdated || 'Custom Local Dataset');
+          }
         }
+      } catch (e) {
+        console.error('Failed to load storage', e);
+      } finally {
+        setIsLoading(false);
       }
-    } catch (e) {
-      console.error('Failed to load storage', e);
-    }
+    };
+
+    loadInitialData();
   }, []);
 
   const updateOffersAndStorage = (action: React.SetStateAction<Offer[]>) => {
