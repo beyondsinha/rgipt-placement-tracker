@@ -47,10 +47,15 @@ export function OffersProvider({ children }: { children: React.ReactNode }) {
         .filter(Boolean),
       minCgpa: x.minCgpa && !isNaN(Number(x.minCgpa)) ? Number(x.minCgpa) : null,
       role: x.role || 'Graduate Trainee',
-      ctc: x.ctc && !isNaN(Number(x.ctc)) ? Number(x.ctc) : null,
+      ctc: x.ctc ? String(x.ctc).trim() : null,
       stipend: x.stipend && !isNaN(Number(x.stipend)) ? Number(x.stipend) : null,
       location: x.location || 'India',
-      studentsSelected: !isNaN(Number(x.studentsSelected)) ? Number(x.studentsSelected) : 0,
+      studentsSelected:
+        String(x.studentsSelected || '').trim().toLowerCase() === 'process pending'
+          ? 'Process Pending'
+          : !isNaN(Number(x.studentsSelected))
+            ? Number(x.studentsSelected)
+            : 0,
       notes: x.notes || ''
     }));
   };
