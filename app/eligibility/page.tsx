@@ -8,8 +8,8 @@ import { useOffers } from '@/components/OffersProvider';
 export default function Page() {
   const { offers } = useOffers();
 
-  const [b, setB] = useState('MnC');
-  const [cgpa, setCgpa] = useState('8.04');
+  const [b, setB] = useState('CSE');
+  const [cgpa, setCgpa] = useState('9.50');
 
   const n = Number(cgpa) || 0;
 
