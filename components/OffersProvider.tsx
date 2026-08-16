@@ -33,31 +33,79 @@ export function OffersProvider({ children }: { children: React.ReactNode }) {
 
   // Helper to parse CSV data into Offer objects
   const parseCsvOffers = (csvText: string): Offer[] => {
-    const parsed = Papa.parse(csvText, { header: true, skipEmptyLines: true });
-    return (parsed.data as any[]).map((x, i) => ({
-      id: x.id || String(Date.now() + i),
-      session: x.session || '2026-27',
-      notificationDate: x.notificationDate || new Date().toISOString().split('T')[0],
-      company: x.company || 'Unknown',
-      sector: x.sector || 'General',
-      offerType: x.offerType || 'FTE',
-      branches: String(x.branches || '')
-        .split('|')
-        .map((v: string) => v.trim())
-        .filter(Boolean),
-      minCgpa: x.minCgpa && !isNaN(Number(x.minCgpa)) ? Number(x.minCgpa) : null,
-      role: x.role || 'Graduate Trainee',
-      ctc: x.ctc ? String(x.ctc).trim() : null,
-      stipend: x.stipend && !isNaN(Number(x.stipend)) ? Number(x.stipend) : null,
-      location: x.location || 'India',
-      studentsSelected:
-        String(x.studentsSelected || '').trim().toLowerCase() === 'process pending'
-          ? 'Process Pending'
-          : !isNaN(Number(x.studentsSelected))
-            ? Number(x.studentsSelected)
-            : 0,
-      notes: x.notes || ''
-    }));
+    const parsed = Papa.parse(csvText, {
+      header: true,
+      skipEmptyLines: true
+    });
+
+    let lastId = '';
+    let lastCompany = '';
+    let lastSector = '';
+
+    return (parsed.data as any[]).map((x, i) => {
+      const rawId = String(x.id || '').trim();
+      const rawCompany = String(x.company || '').trim();
+      const rawSector = String(x.sector || '').trim();
+
+      // Carry forward blank ID/company/sector cells
+      // for grouped records in Google Sheets.
+      if (rawId) {
+        lastId = rawId;
+      }
+
+      if (rawCompany) {
+        lastCompany = rawCompany;
+      }
+
+      if (rawSector) {
+        lastSector = rawSector;
+      }
+
+      return {
+        id: lastId || String(Date.now() + i),
+        session: x.session || '2026-27',
+
+        notificationDate:
+          x.notificationDate ||
+          new Date().toISOString().split('T')[0],
+
+        company: lastCompany || 'Unknown',
+        sector: lastSector || 'General',
+
+        offerType: x.offerType || 'FTE',
+
+        branches: String(x.branches || '')
+          .split('|')
+          .map((v: string) => v.trim())
+          .filter(Boolean),
+
+        minCgpa:
+          x.minCgpa && !isNaN(Number(x.minCgpa))
+            ? Number(x.minCgpa)
+            : null,
+
+        role: x.role || 'Graduate Trainee',
+
+        ctc: x.ctc ? String(x.ctc).trim() : null,
+
+        stipend:
+          x.stipend && !isNaN(Number(x.stipend))
+            ? Number(x.stipend)
+            : null,
+
+        location: x.location || 'India',
+
+        studentsSelected:
+          String(x.studentsSelected || '').trim().toLowerCase() ===
+          'process pending'
+            ? 'Process Pending'
+            : !isNaN(Number(x.studentsSelected))
+              ? Number(x.studentsSelected)
+              : 0,
+
+        notes: x.notes || ''
+      };
+    });
   };
 
   // Sync data from Google Sheet CSV URL
