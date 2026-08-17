@@ -66,46 +66,6 @@ The tracker provides a centralized interface to explore placement opportunities,
 * **Vercel**
 * **Git & GitHub**
 
-
-## Data Management
-
-Placement data is maintained through a Google Sheet using the following fields:
-
-| Field              | Description                          |
-| ------------------ | ------------------------------------ |
-| `id`               | Unique placement record ID           |
-| `session`          | Placement session                    |
-| `company`          | Company name                         |
-| `sector`           | Industry/sector                      |
-| `offerType`        | FTE, PPO, Intern + FTE, etc.         |
-| `branches`         | Eligible branches                    |
-| `minCgpa`          | Minimum eligible CGPA                |
-| `role`             | Job/internship role                  |
-| `ctc`              | CTC in INR                           |
-| `stipend`          | Monthly stipend in INR               |
-| `location`         | Job/internship location              |
-| `studentsSelected` | Number selected or `Process Pending` |
-
-### CTC Formats
-
-The tracker supports multiple CTC formats, including:
-
-```text
-1800000
-500000-600000
-460000/650000/1118000
-```
-
-These are displayed as:
-
-```text
-₹18.00 LPA
-₹5.00–6.00 LPA
-₹4.60 / ₹6.50 / ₹11.18 LPA
-```
-
----
-
 ## Supported Branches
 
 The current tracker supports:
