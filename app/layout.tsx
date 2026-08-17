@@ -40,9 +40,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           {children}
           <Analytics />
 
-          <footer className="container py-10 text-xs muted text-center">
-            <div>
-            © 2026 Arpit Sinha. All rights reserved.
+          <footer className="container mt-12 pb-8 text-center">
+            <div className="text-sm text-slate-400">
+              © 2026 Arpit Sinha. All rights reserved.
             </div>
           </footer>
         </OffersProvider>
