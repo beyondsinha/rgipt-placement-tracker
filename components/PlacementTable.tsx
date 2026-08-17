@@ -126,6 +126,7 @@ export default function PlacementTable({ offers }: { offers: Offer[] }) {
               <th className="p-4">CGPA</th>
               <th className="p-4">Role</th>
               <th className="p-4">CTC / Stipend</th>
+              <th className="p-4">Location</th>
               <th className="p-4">Selected</th>
             </tr>
           </thead>
@@ -204,7 +205,9 @@ export default function PlacementTable({ offers }: { offers: Offer[] }) {
                       </div>
                     )}
                   </td>
-
+                  <td className="p-4 whitespace-nowrap">
+                    {o.location || '—'}
+                  </td>
                   {/* Selected */}
                   <td className="p-4 font-bold">
                     {o.studentsSelected}
