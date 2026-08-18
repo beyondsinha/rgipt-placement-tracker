@@ -96,13 +96,16 @@ export function OffersProvider({ children }: { children: React.ReactNode }) {
         location: x.location || 'India',
 
         studentsSelected:
-          String(x.studentsSelected || '').trim().toLowerCase() ===
-          'process pending'
+          String(x.studentsSelected || '').trim().toLowerCase() === 'process pending'
             ? 'Process Pending'
             : !isNaN(Number(x.studentsSelected))
               ? Number(x.studentsSelected)
               : 0,
-
+        
+        selectedByBranch: x.selectedByBranch
+          ? String(x.selectedByBranch).trim()
+          : null,
+        
         notes: x.notes || ''
       };
     });
