@@ -210,7 +210,21 @@ export default function PlacementTable({ offers }: { offers: Offer[] }) {
                   </td>
                   {/* Selected */}
                   <td className="p-4 font-bold">
-                    {o.studentsSelected}
+                    <div>{o.studentsSelected}</div>
+                  
+                    {o.selectedByBranch && (
+                      <div className="text-xs muted mt-2 font-normal leading-5">
+                        {o.selectedByBranch.split('|').map((item, index) => {
+                          const [branch, count] = item.split(':');
+                  
+                          return (
+                            <div key={`${branch}-${index}`}>
+                              {branch}: {count}
+                            </div>
+                          );
+                        })}
+                      </div>
+                    )}
                   </td>
                 </tr>
               );
